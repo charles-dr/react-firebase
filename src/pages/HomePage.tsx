@@ -1,24 +1,9 @@
 import React, { useState } from 'react'
 import { useFirebase } from 'react-redux-firebase'
-
-interface Product {
-    Name: string,
-    allergies: string,
-    category: string,
-    description: string,
-    favorited: string,
-    healthProblem: string,
-    imageUrl: string,
-    ingredients: string,
-    price: number,
-    rate: number,
-    rate_num: number,
-    stock: number,
-}
-
+import { Product } from '@interfaces'
 
 const HomePage: React.FC = () => {
-    const [product, setProduct] = useState({
+    const [product, setProduct] = useState<Product | null>({
         Name: '',
         allergies: '',
         category: '',

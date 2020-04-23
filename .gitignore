@@ -7,7 +7,7 @@
 .env
 # testing
 /coverage
-
+src/styles/tailwind.css
 # production
 /build
 

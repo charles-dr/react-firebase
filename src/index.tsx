@@ -27,7 +27,7 @@ const fbConfig = {
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
   measurementId: process.env.REACT_APP_FIREBASE_MEASURE_ID
 };
-console.log('[fireabase config]', fbConfig)
+
 const rrfConfig = {
   userProfile: 'users'
 }
@@ -39,16 +39,17 @@ const rootReducer = combineReducers({
   // firestore: firestoreReducer // <- needed if using firestore
 })
 
-const initialState = {}
-const store = createStore(rootReducer, initialState)
+const initialState: any = {
+  firebase: {}
+}
 
+const store = createStore(rootReducer, initialState)
 const rrfProps = {
   firebase,
   config: rrfConfig,
   dispatch: store.dispatch
   // createFirestoreInstance // <- needed if using firestore
 }
-
 
 
 ReactDOM.render(

@@ -12,3 +12,7 @@ export interface Product {
     rate_num: number,
     stock: number,
 }
+
+export interface State {
+    firebase: JSON
+}

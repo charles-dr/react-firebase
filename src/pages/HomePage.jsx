@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
-import { useFirebase } from 'react-redux-firebase'
-import { Product } from '@/interfaces'
+import { useFirebase, useFirebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase'
+import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux'
+import { Product } from '../interfaces'
 
-const HomePage: React.FC = () => {
+
+const HomePage = () => {
     const [product, setProduct] = useState({
         Name: '',
         allergies: '',
@@ -17,32 +20,34 @@ const HomePage: React.FC = () => {
         rate_num: 0,
         stock: 0,
     });
-
     const firebase = useFirebase()
+    useFirebaseConnect([
+        'product'
+    ])
+    const products = useSelector(state => state.firebase.ordered.product)
+    // if (!isLoaded(products)) {
+    //     return <div>Loading...</div>
+    // }
+    // if (!isEmpty(products)) {
+    //     return <div>Product List Is Empty</div>
+    // }
+    console.log('[products]', products)
     const addProduct = () => {
-        console.log(product)
         return firebase.push('product', product)
-        .then(response => {
-            console.log(response)
-        })
-        .catch (err => {
-            console.error(err)
-        })
+            .then(response => {
+                console.log(response)
+            })
+            .catch(err => {
+                console.error(err)
+            })
     }
-
-    const handleOnChange = (e:React.FormEvent<HTMLInputElement>) => {
-        setProduct({...product, [e.currentTarget.name]: e.currentTarget.value})
+    const handleOnChange = (e) => {
+        setProduct({ ...product, [e.currentTarget.name]: e.currentTarget.value })
     }
-
     return (
         <div className="App" >
             <div className="flex flex-wrap px-12 pt-24">
-                <div className="w-1/3">
-                    <div className="w-full max-w-250px max-h-250px mx-auto border solid border-gray-500 pt-full">
-
-                    </div>
-                </div>
-                <div className="w-2/3 flex flex-wrap">
+                <div className="w-full flex flex-wrap">
                     <div className="w-1/2">
                         <div className="form-group px-3 py-2">
                             <label>Name</label>
@@ -56,21 +61,21 @@ const HomePage: React.FC = () => {
                             <input className="block w-full border border-black rounded-sm" placeholder="Category"
                                 name="category"
                                 value={product.category}
-                                onChange={handleOnChange}/>
+                                onChange={handleOnChange} />
                         </div>
                         <div className="form-group px-3 py-2">
                             <label>Health Problem</label>
                             <input className="block w-full border border-black rounded-sm" placeholder="Health Problem"
                                 name="healthProblem"
                                 value={product.healthProblem}
-                                onChange={handleOnChange}/>
+                                onChange={handleOnChange} />
                         </div>
                         <div className="form-group px-3 py-2">
                             <label>Ingredients</label>
                             <input className="block w-full border border-black rounded-sm" placeholder="Ingredients"
                                 name="ingredients"
                                 value={product.ingredients}
-                                onChange={handleOnChange}/>
+                                onChange={handleOnChange} />
                         </div>
                     </div>
                     <div className="w-1/2">
@@ -79,14 +84,14 @@ const HomePage: React.FC = () => {
                             <input className="block w-full border border-black rounded-sm" placeholder="Allergles"
                                 name="allergies"
                                 value={product.allergies}
-                                onChange={handleOnChange}/>
+                                onChange={handleOnChange} />
                         </div>
                         <div className="form-group px-3 py-2">
                             <label>Description</label>
                             <input className="block w-full border border-black rounded-sm" placeholder="Description"
                                 name="description"
-                                value={product.description} 
-                                onChange={handleOnChange}/>
+                                value={product.description}
+                                onChange={handleOnChange} />
                         </div>
                         <div className="form-group px-3 py-2">
                             <label>Stock</label>
@@ -129,39 +134,22 @@ const HomePage: React.FC = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>malaria, coach, headache</td>
-                            <td>malaria</td>
-                            <td>malaria</td>
-                            <td></td>
-                            <td>malaria2</td>
-                            <td>malaria</td>
-                            <td>250</td>
-                            <td>Catellaon</td>
-                            <td>Edit | Delete</td>
-                        </tr>
-                        <tr>
-                            <td>malaria, coach, headache</td>
-                            <td>malaria</td>
-                            <td>malaria</td>
-                            <td></td>
-                            <td>malaria2</td>
-                            <td>malaria</td>
-                            <td>250</td>
-                            <td>Catellaon</td>
-                            <td>Edit | Delete</td>
-                        </tr>
-                        <tr>
-                            <td>malaria, coach, headache</td>
-                            <td>malaria</td>
-                            <td>malaria</td>
-                            <td></td>
-                            <td>malaria2</td>
-                            <td>malaria</td>
-                            <td>250</td>
-                            <td>Catellaon</td>
-                            <td>Edit | Delete</td>
-                        </tr>
+                        {
+                            products && products.map((product, i) => (
+                                product &&
+                                <tr key={i}>
+                                    <td>{product.value.Name}</td>
+                                    <td>{product.value.healthProblem}</td>
+                                    <td>{product.value.category}</td>
+                                    <td>{product.value.ingredients}</td>
+                                    <td>{product.value.allergies}</td>
+                                    <td>{product.value.description}</td>
+                                    <td>{product.value.stock}</td>
+                                    <td>{product.value.price}</td>
+                                    <td>Edit | Delete</td>
+                                </tr>
+                            ))
+                        }
                     </tbody>
                 </table>
             </div>

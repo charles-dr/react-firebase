@@ -1,3 +1,8 @@
+# CRUD application using React.js & Typescript & Firebase
+## references:<br />
+- [react-redux-firebase](http://react-redux-firebase.com/docs/getting_started)
+- [Tailwind CSS](https://tailwindcss.com/)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

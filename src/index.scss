@@ -1,0 +1,37 @@
+.form-group {
+  font-size: 14px;
+  label {
+    font-weight: semibold;
+  }
+  input { margin-top: 5px; padding-left: 0.5rem; line-height: 2rem; border-radius: 3px; }
+}
+
+
+table { 
+  thead {
+    tr {
+      background-color: #eee;
+      th {
+
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      &:nth-child(odd) { background-color: #fff; }
+      &:nth-child(even) { background-color: #eee; }
+      td {
+
+      }
+    }
+  }
+  td, th {
+    border: 1px solid #ababab;
+    padding: 5px;
+    &:last-child { min-width: 100px; }
+  }
+
+
+
+}

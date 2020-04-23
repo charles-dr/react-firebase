@@ -18,15 +18,16 @@ import {
 } from 'react-redux-firebase';
 
 const fbConfig = {
-  apiKey: "AIzaSyDgHWQSTmSyWXur0Zy1Iv2T_IYcAyzEuH4",
-  authDomain: "safika-health-shop.firebaseapp.com",
-  databaseURL: "https://safika-health-shop.firebaseio.com",
-  projectId: "safika-health-shop",
-  storageBucket: "safika-health-shop.appspot.com",
-  messagingSenderId: "822207857109",
-  appId: "1:822207857109:web:4267a5829774122a203d5c",
-  measurementId: "G-KS98MY8MFF"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_FIREBASE_DB_URL,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MSG_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASURE_ID
 };
+console.log('[fireabase config]', fbConfig)
 const rrfConfig = {
   userProfile: 'users'
 }

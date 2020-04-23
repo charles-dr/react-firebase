@@ -1,12 +1,9 @@
 {
+  "extends": "./tspaths.json",
   "compilerOptions": {
     "target": "es5",
     "module": "esnext",
     "strict": true,
-    // "noImplicitAny": true,
-    // "strictNullChecks": true,
-    // "noImplicitThis": true,
-    // "alwaysStrict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "lib": [

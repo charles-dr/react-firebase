@@ -9,7 +9,7 @@
     ]
   },
   "hosting": {
-    "site": "safica-health",
+    "site": "health-crud",
     "public": "build",
     "ignore": [
       "firebase.json",

@@ -5,13 +5,13 @@ import * as serviceWorker from './serviceWorker';
 import './styles/tailwind.css';
 import './index.scss';
 
-import { render } from 'react-dom';
+// import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import 'firebase/firestore';
+import 'firebase/storage';
 import 'firebase/database';
-import { createStore, combineReducers, compose } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import {
   ReactReduxFirebaseProvider,
   firebaseReducer

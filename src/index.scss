@@ -1,9 +1,27 @@
+.select-item input[type="checkbox"] {
+  vertical-align: middle;
+}
+
 .form-group {
   font-size: 14px;
   label {
     font-weight: semibold;
   }
-  input { margin-top: 5px; padding-left: 0.5rem; line-height: 2rem; border-radius: 3px; }
+  input, select { margin-top: 5px; padding-left: 0.5rem; line-height: 2rem; border-radius: 3px; min-height: 34px; }
+}
+
+
+.loading-con {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 9999;
+  .loading-img {
+    max-width: 80px;
+    max-height: 80px;
+    display: block;
+    margin: auto;
+  }
 }
 
 
